@@ -1,0 +1,33 @@
+---
+ad:
+   username:            'snip'
+   password:            'snip'
+   dc:                  'snip'
+   base:                'dc=snip,dc=snip'
+
+oracle:
+   instance:            'snip'
+   username:            'snip'
+   username:            'snip'
+   password:            'snip'
+
+gam: #requires GAM library
+   path: "~/bin/gam/gam"
+#   filters:
+#      - 'accounts:first_name==John'
+#      - 'accounts:last_name==Smith'
+   mappings:  #email comes by default
+      'date':                     'last_updated'
+      'accounts:is_disabled':     'is_disabled'
+      'accounts:is_super_admin':  'is_super_admin'
+      'accounts:creation_time':   'creation_time'
+      'accounts:last_login_time': 'last_login_time'
+      'accounts:last_sso_time':   'last_sso_time'
+   data_formatting:  #for non-strings
+      'last_updated':    'date_simple' #'MM-DD-YYYY'
+      'is_disabled':     'bool'        #Y/N
+      'is_super_admin':  'bool'        #Y/N
+      'creation_time':   'date_UTC'    #'YYYY-MM-DD"T"HH24:MI:SS"Z"'
+      'last_login_time': 'date_UTC'    #'YYYY-MM-DD"T"HH24:MI:SS"Z"'
+      'last_sso_time':   'date_UTC'    #'YYYY-MM-DD"T"HH24:MI:SS"Z"'
+   primary_key: 'email'      #primary key; need to specify for upsert
